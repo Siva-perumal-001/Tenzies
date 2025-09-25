@@ -38,11 +38,16 @@ function App(){
     );
 
     function rollDice(){
-        setDice(oldDice=>oldDice.map(dice =>
-            dice.isHeld ? 
-                dice :
-                {...dice, value:Math.ceil(Math.random() * 6) }
-        ));
+        if(!gameWon){
+            setDice(oldDice=>oldDice.map(dice =>
+                dice.isHeld ? 
+                    dice :
+                    {...dice, value:Math.ceil(Math.random() * 6) }
+            ));
+        }
+        else{
+            setDice(generateDice())
+        }
     }
 
     return(
